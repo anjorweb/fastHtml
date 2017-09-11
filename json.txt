@@ -1,0 +1,238 @@
+{
+  "children": [
+    {
+      "type": "group",
+      "visible": true,
+      "opacity": 1,
+      "blendingMode": "normal",
+      "name": "组 5",
+      "left": 0,
+      "right": 640,
+      "top": 0,
+      "bottom": 1036,
+      "height": 1036,
+      "width": 640,
+      "children": [
+        {
+          "type": "layer",
+          "visible": true,
+          "opacity": 1,
+          "blendingMode": "normal",
+          "name": "logo",
+          "left": 124,
+          "right": 516,
+          "top": 40,
+          "bottom": 94,
+          "height": 54,
+          "width": 392,
+          "mask": {},
+          "image": {}
+        },
+        {
+          "type": "layer",
+          "visible": true,
+          "opacity": 1,
+          "blendingMode": "normal",
+          "name": "6000+",
+          "left": 95,
+          "right": 544,
+          "top": 128,
+          "bottom": 157,
+          "height": 29,
+          "width": 449,
+          "mask": {},
+          "image": {}
+        },
+        {
+          "type": "group",
+          "visible": true,
+          "opacity": 1,
+          "blendingMode": "normal",
+          "name": "组 3",
+          "left": 28,
+          "right": 617,
+          "top": 171,
+          "bottom": 902,
+          "height": 731,
+          "width": 589,
+          "children": [
+            {
+              "type": "group",
+              "visible": true,
+              "opacity": 1,
+              "blendingMode": "normal",
+              "name": "组 4",
+              "left": 28,
+              "right": 617,
+              "top": 171,
+              "bottom": 389,
+              "height": 218,
+              "width": 589,
+              "children": [
+                {
+                  "type": "layer",
+                  "visible": true,
+                  "opacity": 1,
+                  "blendingMode": "normal",
+                  "name": "上",
+                  "left": 28,
+                  "right": 617,
+                  "top": 171,
+                  "bottom": 389,
+                  "height": 218,
+                  "width": 589,
+                  "mask": {},
+                  "image": {}
+                }
+              ]
+            },
+            {
+              "type": "layer",
+              "visible": true,
+              "opacity": 1,
+              "blendingMode": "normal",
+              "name": "中",
+              "left": 89,
+              "right": 552,
+              "top": 344,
+              "bottom": 902,
+              "height": 558,
+              "width": 463,
+              "mask": {},
+              "image": {}
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "visible": true,
+          "opacity": 1,
+          "blendingMode": "normal",
+          "name": "组 2",
+          "left": 25,
+          "right": 616,
+          "top": 477,
+          "bottom": 635,
+          "height": 158,
+          "width": 591,
+          "children": [
+            {
+              "type": "layer",
+              "visible": true,
+              "opacity": 1,
+              "blendingMode": "normal",
+              "name": "硬币左",
+              "left": 469,
+              "right": 616,
+              "top": 477,
+              "bottom": 635,
+              "height": 158,
+              "width": 147,
+              "mask": {},
+              "image": {}
+            },
+            {
+              "type": "layer",
+              "visible": true,
+              "opacity": 1,
+              "blendingMode": "normal",
+              "name": "硬币左",
+              "left": 25,
+              "right": 172,
+              "top": 477,
+              "bottom": 635,
+              "height": 158,
+              "width": 147,
+              "mask": {},
+              "image": {}
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "visible": true,
+          "opacity": 1,
+          "blendingMode": "normal",
+          "name": "组 1",
+          "left": 106,
+          "right": 526,
+          "top": 854,
+          "bottom": 1009,
+          "height": 155,
+          "width": 420,
+          "children": [
+            {
+              "type": "group",
+              "visible": true,
+              "opacity": 1,
+              "blendingMode": "normal",
+              "name": "底",
+              "left": 106,
+              "right": 526,
+              "top": 854,
+              "bottom": 1009,
+              "height": 155,
+              "width": 420,
+              "children": [
+                {
+                  "type": "layer",
+                  "visible": true,
+                  "opacity": 1,
+                  "blendingMode": "normal",
+                  "name": "button",
+                  "left": 287,
+                  "right": 526,
+                  "top": 906,
+                  "bottom": 992,
+                  "height": 86,
+                  "width": 239,
+                  "mask": {},
+                  "image": {}
+                },
+                {
+                  "type": "layer",
+                  "visible": true,
+                  "opacity": 1,
+                  "blendingMode": "normal",
+                  "name": "icon",
+                  "left": 106,
+                  "right": 261,
+                  "top": 854,
+                  "bottom": 1009,
+                  "height": 155,
+                  "width": 155,
+                  "mask": {},
+                  "image": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "layer",
+          "visible": true,
+          "opacity": 1,
+          "blendingMode": "normal",
+          "name": "图层 1",
+          "left": 0,
+          "right": 640,
+          "top": 0,
+          "bottom": 1036,
+          "height": 1036,
+          "width": 640,
+          "mask": {},
+          "image": {}
+        }
+      ]
+    }
+  ],
+  "document": {
+    "width": 640,
+    "height": 1036,
+    "resources": {
+      "layerComps": [],
+      "guides": [],
+      "slices": []
+    }
+  }
+}

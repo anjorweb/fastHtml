@@ -1,0 +1,31 @@
+{
+  "name": "fastHTML",
+  "description": "psd convert html.",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "keywords": [
+    "psd",
+    "html"
+  ],
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "coffee-script": "~ 1.7.1",
+    "coffeescript-module": "~ 0.2.1",
+    "iconv-lite": "~ 0.4.4",
+    "jquery": "^3.2.1",
+    "jspack": "~ 0.0.3",
+    "lodash": "~ 2.4",
+    "parse-engine-data": "~ 0.1",
+    "pngjs": "3.2.0",
+    "rsvp": "~ 3.0.6",
+    "acorn": "^5.1.1",
+    "bluebird": "^2.9.25",
+    "browserify": "~ 10.1.3",
+    "coffeeify": "~ 1.1.0",
+    "docco-husky": "*",
+    "mocha": "~ 1.18.2",
+    "rimraf": "~ 2.2.8",
+    "should": "~ 3.3.1",
+    "uglify-js": "^2.4.21"
+  }
+}
