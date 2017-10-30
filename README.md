@@ -15,10 +15,20 @@ PSD导出图层结构、图片使用的是 https://github.com/meltingice/psd.js 
 
 ``npm install //安装包 ``
 
-``node app {psd文件路径} //文件路径参数可选，默认文件是001.psd``
+``node app {psd文件路径} //文件路径，必须指定！ 如：node app 001.psd``
 
-**说明**
+**目录说明**
 
-1、export/tmp.html 此为生成的index.html模板文件
+—lib/	//解析psd的脚本，核心部分
 
-2、采用rem布局，默认基于宽度640px的设计稿，如果设计稿是750px，需要手动修改模板文件js
+—export/	//导出目录
+
+—tmp.html	//生成的HTML结构模板文件，此为基础结构
+
+—package.json	//包json文件，npm install 安装
+
+**特点**
+
+根据psd文件名生成单独的目录，不会互相覆盖
+
+独立的HTML结构，方便多个单页整合到一起

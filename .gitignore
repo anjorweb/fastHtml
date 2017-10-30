@@ -9,6 +9,8 @@ dist/psd.js.map
 
 dist/psd.min.js
 
+export/*
+
 image.html
 
 node_modules

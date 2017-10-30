@@ -3,12 +3,17 @@ var PSD = require('./lib/psd.coffee');
 var fs = require("fs");
 var cheerio=require('cheerio');
 var http = require('http');
+var path = require('path');
+var rimraf = require('rimraf');
 var psd = null;
 var $ = null;
 var $wrap = null;
+var content = null;
 class exportPSD {
     constructor(){
         this.exportPath = "./export/";
+        this.exportAppPath = "";
+
         this.saveImgPath = this.exportPath + "app/images/";
         this.saveCssPath = this.exportPath + "app/css/";
         this.oldTime = new Date();
@@ -16,8 +21,36 @@ class exportPSD {
         this.groupId = 0;
         this.serverRes = null;
         this.cssStyle = ''; //css字符串
-        this.file = process.argv[2] || './001.psd';
+        this.file = process.argv[2];
+        this.appName = this.file.replace(".", "");
         this.viewRect = {};
+    };
+    //创建目录
+    mkdir(dirName){
+        var _self = this;
+        var dir = _self.appName;
+        //console.log(_self.exportPath + dir + "/");
+        rimraf(path.join(__dirname, _self.exportPath + dir), err => {
+            if (err) throw err;
+             fs.mkdir(_self.exportPath + dir + "/", function(d){
+                //console.log("mkdir ok!");
+                _self.exportAppPath = _self.exportPath + dir + "/";
+                
+                fs.mkdir(_self.exportAppPath + "images", function(){
+                    _self.saveImgPath = _self.exportAppPath + "images/";
+                    //_self.emptyDir(_self.saveImgPath);
+                });
+                fs.mkdir(_self.exportAppPath + "css", function(){
+                    _self.saveCssPath = _self.exportAppPath + "css/";
+                    //_self.emptyDir(_self.saveCssPath);
+                });
+
+                _self.openPSD();
+            });
+        });
+        
+
+        
     };
     //删除所有的文件(将所有文件夹置空)
     emptyDir(fileUrl){
@@ -38,16 +71,18 @@ class exportPSD {
      */
     getPageHTML(){
         var _self = this;
-        fs.readFile(_self.exportPath+"tmp.html", function (err, data) {
+        var divRoot = _self.file.replace(".", "");
+        fs.readFile("tmp.html", function (err, data) {
             var htmlString = data.toString();
             $ = cheerio.load(htmlString);
             $wrap = $(".wrap");
-            console.log("clear start...");
-            _self.emptyDir(_self.saveImgPath);
-            _self.emptyDir(_self.saveCssPath);
+            $wrap.append('<div class="page_'+ divRoot +'"></div>');
+            content = $wrap.find(".page_"+divRoot);
             console.log("export start...");
             psd = PSD.fromFile(_self.file);
-            _self.openPSD();
+            _self.mkdir(_self.file);
+
+            
         });
     };
     /**
@@ -93,7 +128,7 @@ class exportPSD {
             _self.createDivByJson(domJSON);
 
             //写入生成好的html结构
-            fs.writeFile(_self.exportPath+"app/index.html", $.html(), {
+            fs.writeFile(_self.exportAppPath+"index.html", $.html(), {
                 encoding:"utf8"
             }, function (err) {
                 //console.log(err);
@@ -109,6 +144,7 @@ class exportPSD {
             //return psd.image.saveAsPng('./output.png');
         }).then(function () {
             var time = (new Date()) - _self.oldTime;
+            console.log("export end!");
             console.log("end time:"+time+"ms");
         }).catch(function (err) {
             console.dir(err);
@@ -124,16 +160,16 @@ class exportPSD {
             var item = domJSON.children[i];
             if (item.type == "layer" && item.visible && item.width && item.height){
                 var layer = '<div class="'+ item.name +'"></div>\n';
-                _self.cssStyle+='.'+ item.name +' { position: absolute; top:50%; width:'+ item.width/100 +'rem; height:'+ item.height/100 +'rem; left:'+ item.left/100 +'rem; margin-top:'+ -(_self.viewRect.height/100/2 - item.top/100) +'rem; background:url(../'+ (backGroundImgUrl+item.name) +'.png); background-size:100% auto; }\n';
-                $wrap.append(layer);
+                _self.cssStyle+='.page_'+ _self.appName + ' .' + item.name +' { position: absolute; top:50%; width:'+ item.width/100 +'rem; height:'+ item.height/100 +'rem; left:'+ item.left/100 +'rem; margin-top:'+ -(_self.viewRect.height/100/2 - item.top/100) +'rem; background:url(../'+ (backGroundImgUrl+item.name) +'.png); background-size:100% auto; }\n';
+                content.append(layer);
             }else if (item.type == "group" && item.visible){
-                $wrap.append('<div class="'+ item.name +'"></div>\n');
-                $wrap = $wrap.find('.'+item.name);
+                content.append('<div class="'+ item.name +'"></div>\n');
+                content = content.find('.'+item.name);
                 _self.createDivByJson(item);
             }
             //当前循环结束，重置$wrap
             if ( i == childrenLen-1){
-                $wrap = $wrap.parent();
+                content = content.parent();
             }
         }
     };
@@ -164,13 +200,18 @@ class exportPSD {
     };
     start(){
         var _self = this;
-        fs.exists(_self.file, function (res) {
-            if (res){
-                _self.getPageHTML();
-            }else{
-                console.log("psd文件路径不正确");
-            }
-        });
+        if(_self.file){
+            fs.exists(_self.file, function (res) {
+                if (res){
+                    _self.getPageHTML();
+                }else{
+                    console.log("psd文件路径不正确");
+                }
+            });
+        }else{
+            console.log("需要指定PSD文件哦");
+        }
+
     }
 }
 
