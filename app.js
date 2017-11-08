@@ -22,10 +22,14 @@ class exportPSD {
         this.serverRes = null;
         this.cssStyle = ''; //css字符串
         this.file = process.argv[2];
-        this.appName = this.file.replace(".", "");
+        this.appName = '';
         this.viewRect = {};
     };
-    //创建目录
+
+    /**
+     * 创建目录
+     * @param dirName
+     */
     mkdir(dirName){
         var _self = this;
         var dir = _self.appName;
@@ -52,7 +56,11 @@ class exportPSD {
 
         
     };
-    //删除所有的文件(将所有文件夹置空)
+
+    /**
+     * 删除所有的文件(将所有文件夹置空) 暂弃用
+     * @param fileUrl
+     */
     emptyDir(fileUrl){
         var _self = this;
         var files = fs.readdirSync(fileUrl);//读取该文件夹
@@ -82,11 +90,11 @@ class exportPSD {
             psd = PSD.fromFile(_self.file);
             _self.mkdir(_self.file);
 
-            
         });
     };
     /**
      * 打开psd文件，分析文件
+     * 导出psd图层图片，导出前需要先合并下psd图层，删掉不显示的图层等
      */
     openPSD(){
         var _self = this;
@@ -99,7 +107,7 @@ class exportPSD {
                 height:treeJson.document.height
             };
             _self.findArrAndReverse(tree);
-            //导出psd图层图片，导出前需要先合并下psd图层，删掉不显示的图层等
+
             tree.descendants().forEach(function (node) {
                 if (node.isGroup()){
                     node.name = "group_"+_self.groupId;
@@ -107,7 +115,7 @@ class exportPSD {
                     return false;
                 }
                 if (node.layer.visible){
-                    node.name = "layer_"+_self.pngId;
+                    node.name = "dv_" + _self.appName + "_layer_" + _self.pngId;
                     node.saveAsPng(_self.saveImgPath + node.name + ".png").catch(function (err) {
                         //console.log(err.stack);
                     });
@@ -150,7 +158,11 @@ class exportPSD {
             console.dir(err);
         });
     };
-    //根据json数据生成结构
+
+    /**
+     * 根据json数据生成结构
+     * @param jsons
+     */
     createDivByJson(jsons) {
         var _self = this;
         var domJSON = jsons;
@@ -203,6 +215,7 @@ class exportPSD {
         if(_self.file){
             fs.exists(_self.file, function (res) {
                 if (res){
+                    _self.appName = _self.file.replace(".", "");
                     _self.getPageHTML();
                 }else{
                     console.log("psd文件路径不正确");
