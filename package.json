@@ -3,6 +3,9 @@
   "description": "psd convert html.",
   "version": "0.0.2",
   "main": "./app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "keywords": [
     "psd",
     "html"
