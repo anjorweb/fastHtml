@@ -11,9 +11,9 @@
 
 **使用**
 
-``npm install //安装包 ``
+``cnpm install //安装包 ``
 
-``node app {psd文件路径} //文件路径，必须指定！ 如：node app 001.psd``
+``npm start {psd文件路径} //文件路径，必须指定！ 如：npm start 001.psd``
 
 **目录说明**
 
