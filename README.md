@@ -3,8 +3,6 @@
 
 自己工作常用整理
 
-PSD导出图层结构、图片使用的是 https://github.com/meltingice/psd.js ，此为核心，FastHtml只是在此基础上生成DOM和CSS。
-
 **适合单页面且采用DOM结构布局的H5页面，基于Canvas的H5请使用Flash2x+AnnieJS!**
 
 **导出前的准备**
@@ -29,6 +27,12 @@ PSD导出图层结构、图片使用的是 https://github.com/meltingice/psd.js 
 
 **特点**
 
+所有div元素的定位采用rem，适配更多浏览器
+
 根据psd文件名生成单独的目录，不会互相覆盖
 
 独立的HTML结构，方便多个单页整合到一起
+
+感谢：
+
+ https://github.com/meltingice/psd.js ，此为核心
